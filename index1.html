@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sobbing Hugging Frog</title>
+  <style>
+    body {
+      background-image: url('360_F_987535000_O5EW3q2OJbhBq7rxqMDe6ZoO0iiYUXYD.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+    }
+
+    .frog-container {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .speech-bubble {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffffff;
+      border: 2px solid #a5d6a7;
+      border-radius: 15px;
+      padding: 12px 24px;
+      font-size: 1.2em;
+      color: #2e7d32;
+      white-space: nowrap;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 12px;
+      border-style: solid;
+      border-color: #ffffff transparent transparent transparent;
+    }
+
+    .frog {
+      width: 200px;
+      height: 260px;
+      background: #a8e6a1;
+      border: 4px solid #4caf50;
+      border-radius: 50% 50% 40% 40%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .eyes {
+      display: flex;
+      gap: 40px;
+      position: relative;
+    }
+
+    .eye {
+      width: 50px;
+      height: 50px;
+      background: #d3f8d3;
+      border: 3px solid #4caf50;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .eye::after {
+      content: '';
+      width: 10px;
+      height: 18px;
+      background: black;
+      border-radius: 50%;
+      transform: rotate(20deg);
+    }
+
+    .glasses {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 2;
+    }
+
+    .glass-frame {
+      width: 60px;
+      height: 60px;
+      border: 3px solid #333;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .glass-bridge {
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 4px;
+      background-color: #333;
+      z-index: 3;
+    }
+
+    .cheeks {
+      position: absolute;
+      top: 70px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 0 40px;
+    }
+
+    .cheek {
+      width: 20px;
+      height: 10px;
+      background: #f8b8c3;
+      border-radius: 50%;
+    }
+
+    .mouth {
+      margin-top: 10px;
+      font-size: 30px;
+    }
+
+    .arms {
+      margin-top: 20px;
+      width: 120px;
+      height: 80px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .arm {
+      width: 70px;
+      height: 20px;
+      background: #a8e6a1;
+      border: 3px solid #4caf50;
+      border-radius: 20px;
+      position: absolute;
+    }
+
+    .arm.left {
+      left: 0;
+      top: 20px;
+      transform: rotate(30deg);
+    }
+
+    .arm.right {
+      right: 0;
+      top: 20px;
+      transform: rotate(-30deg);
+    }
+
+    .arms.hug .left {
+      transform: rotate(0deg) translateX(20px);
+      left: 25px;
+    }
+
+    .arms.hug .right {
+      transform: rotate(0deg) translateX(-20px);
+      right: 25px;
+    }
+
+    .legs {
+      margin-top: auto;
+      display: flex;
+      gap: 30px;
+      margin-bottom: 10px;
+    }
+
+    .leg {
+      width: 40px;
+      height: 50px;
+      background: #a8e6a1;
+      border: 3px solid #4caf50;
+      border-radius: 20px;
+    }
+
+    .tear {
+      width: 8px;
+      height: 20px;
+      background: #81d4fa;
+      border-radius: 50%;
+      position: absolute;
+      top: 80px;
+      animation: sob 1.5s infinite ease-in-out;
+    }
+
+    .tear.left {
+      left: 60px;
+    }
+
+    .tear.right {
+      right: 60px;
+    }
+
+    @keyframes sob {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(30px); }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: #f44336;
+      animation: float 1s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-60px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .rose {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 32px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="frog-container"
+       onmousedown="touchFrog(true, event)"
+       onmouseup="touchFrog(false)"
+       onmouseleave="touchFrog(false)"
+       ontouchstart="touchFrog(true, event)"
+       ontouchend="touchFrog(false)">
+       
+    <div class="speech-bubble" id="bubble">Baby, Don't hate me</div>
+
+    <div class="frog">
+      <div class="glasses">
+        <div class="glass-frame"></div>
+        <div class="glass-frame"></div>
+        <div class="glass-bridge"></div>
+      </div>
+      <div class="eyes">
+        <div class="eye"></div>
+        <div class="eye"></div>
+      </div>
+      <div class="cheeks">
+        <div class="cheek"></div>
+        <div class="cheek"></div>
+      </div>
+      <div class="tear left sad-tear"></div>
+      <div class="tear right sad-tear"></div>
+      <div class="mouth" id="mouth">︵︵</div>
+      <div class="arms" id="arms">
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+      </div>
+      <div class="rose" id="rose">🌹</div>
+      <div class="legs">
+        <div class="leg"></div>
+        <div class="leg"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function touchFrog(isPressed, event = null) {
+      const bubble = document.getElementById("bubble");
+      const arms = document.getElementById("arms");
+      const mouth = document.getElementById("mouth");
+      const tears = document.querySelectorAll(".sad-tear");
+      const rose = document.getElementById("rose");
+
+      if (isPressed) {
+        bubble.textContent = "Here is a rose for you, I love you !";
+        arms.classList.add("hug");
+        mouth.textContent = "︶︶";
+        tears.forEach(t => t.style.display = "none");
+        rose.style.display = "block";
+
+        if (event) {
+          showHeart(event.clientX || event.touches[0].clientX, event.clientY || event.touches[0].clientY);
+        }
+      } else {
+        bubble.textContent = "Baby I love you";
+        arms.classList.remove("hug");
+        mouth.textContent = "︵︵";
+        tears.forEach(t => t.style.display = "block");
+        rose.style.display = "none";
+      }
+    }
+
+    function showHeart(x, y) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "💖";
+      heart.style.left = x - 10 + "px";
+      heart.style.top = y - 20 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
