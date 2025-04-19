@@ -276,7 +276,7 @@
       </div>
       <div class="tear left sad-tear"></div>
       <div class="tear right sad-tear"></div>
-      <div class="mouth" id="mouth">︵︵</div>
+      <div class="mouth" id="mouth">︵</div>
       <div class="arms" id="arms">
         <div class="arm left"></div>
         <div class="arm right"></div>
@@ -300,7 +300,7 @@
       if (isPressed) {
         bubble.textContent = "Here is a rose for you, I love you !";
         arms.classList.add("hug");
-        mouth.textContent = "︶︶";
+        mouth.textContent = "︶";
         tears.forEach(t => t.style.display = "none");
         rose.style.display = "block";
 
@@ -310,7 +310,7 @@
       } else {
         bubble.textContent = "Baby I love you";
         arms.classList.remove("hug");
-        mouth.textContent = "︵︵";
+        mouth.textContent = "︵";
         tears.forEach(t => t.style.display = "block");
         rose.style.display = "none";
       }
